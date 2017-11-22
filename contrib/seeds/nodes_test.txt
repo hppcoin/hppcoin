@@ -1,0 +1,5 @@
+# List of fixed seed nodes for testnet
+51.255.53.128:8878
+
+# Onion nodes
+
