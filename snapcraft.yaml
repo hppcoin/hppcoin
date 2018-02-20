@@ -1,0 +1,49 @@
+name: lmnode
+version: "0.0.1"
+summary: LMNode for Hppcoin project
+description: |
+ LMNodes verify transaction and are used as second layer on top of the normal nodes.
+ LMNodes must have access to 1000hpp at a specific address to play the role of LMNode otherwise they are just degraded to a regular node on the network.
+
+confinement: strict
+grade: stable
+
+apps:
+ cli:
+  command: bin/hppcoin-cli
+  plugs:
+    - network
+    - home
+ daemon:
+  command: bin/hppcoind
+  plugs:
+    - network
+    - network-bind
+
+parts:
+ berkeley:
+  plugin: nil
+  prepare: |
+    apt-get install software-properties-common -y
+    add-apt-repository -y ppa:bitcoin/bitcoin
+    apt-get update
+    apt-get install libdb4.8-dev libdb4.8++-dev -y
+
+ libboost:
+  after: [openssl]
+  plugin: nil
+  prepare: |
+    apt-get install libboost-all-dev -y
+
+ openssl:
+  after: [berkeley]
+  plugin: nil
+  prepare: |
+    apt-get install openssl libssl-dev libevent-dev -y
+
+ cli:
+  after: [libboost]
+  plugin: autotools
+  configflags: [--without-gui]
+  source: https://github.com/hppcoin/hppcoin.git
+  source-branch: master
