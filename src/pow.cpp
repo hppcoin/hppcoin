@@ -46,7 +46,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex *pindexLast, const CBlockHead
         return bnProofOfWorkLimit.GetCompact();
     }
 
-    static const uint32_t BlocksTargetSpacing = 10 * 60; // 4 minutes
+    static  uint32_t BlocksTargetSpacing = 10 * 60; // 10 minutes
+    if(pindexLast->nHeight>15000) BlocksTargetSpacing = 4 * 60; // 4 minutes
     unsigned int TimeDaySeconds = 60 * 60 * 24;
     int64_t PastSecondsMin = TimeDaySeconds * 0.25; // 21600
     int64_t PastSecondsMax = TimeDaySeconds * 7;// 604800

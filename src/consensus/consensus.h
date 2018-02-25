@@ -12,8 +12,8 @@
 
 // HF constants
 
-static const int HF_LMNODE_HEIGHT = 20000;
-static const int HF_LMNODE_PAYMENT_START = HF_LMNODE_HEIGHT + 380; // 20380 - about 24h after HF
+static const int HF_LMNODE_HEIGHT = 16000;
+static const int HF_LMNODE_PAYMENT_START = HF_LMNODE_HEIGHT + 360; // 16360 - about 24h after HF
 
 
 static const int HF_LMNODE_HEIGHT_TESTNET = 500;

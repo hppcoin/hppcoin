@@ -1,14 +1,14 @@
 LMNode Build Instructions and Notes
 =============================
- - Version 0.1.6
- - Date: 14 December 2017
+ - Version 1.0.1
+ - Date: 25 February 2017
  - More detailed guide available here: http://hppcoin.org/LMNSetupGuide.pdf
 
 Prerequisites
 -------------
  - Ubuntu 16.04+
  - Libraries to build from hppcoin source
- - Port **8168** is open
+ - Port **28878** is open
 
 Step 1. Build
 ----------------------
@@ -18,11 +18,11 @@ Step 1. Build
 
 **1.2.**  See [README.md](README.md) for instructions on building.
 
-Step 2. (Optional - only if firewall is running). Open port 8168
+Step 2. (Optional - only if firewall is running). Open port 28878
 ----------------------
 **2.1.**  Run:
 
-    sudo ufw allow 8168
+    sudo ufw allow 28878
     sudo ufw default allow outgoing
     sudo ufw enable
 
@@ -32,9 +32,9 @@ Step 3. First run on your Local Wallet
 
     cd hppcoin
 
-**3.1.**  Start daemon in testnet mode:
+**3.1.**  Start daemon :
 
-    ./src/hppcoind -daemon -server -testnet
+    ./src/hppcoind -daemon -server
 
 **3.2.**  Generate lmnodeprivkey:
 
@@ -46,7 +46,7 @@ Step 3. First run on your Local Wallet
 
     ./src/hppcoin-cli getaccountaddress 0
 
-**3.4.**  Send to received address **exactly 1000 HPP** in **1 transaction**. Wait for 15 confirmations.
+**3.4.**  Send to received address **exactly 1000 HPP** in **1 transaction**. Wait for 8 confirmations.
 
 **3.5.**  Stop daemon:
 
@@ -67,11 +67,11 @@ Step 4. In your VPS where you are hosting your LMNode. Update config files
     maxconnections=24
     lmnode=1
     lmnodeprivkey=XXXXXXXXXXXXXXXXX  ## Replace with your lmnode private key
-    externalip=XXX.XXX.XXX.XXX:8168 ## Replace with your node external IP
+    externalip=XXX.XXX.XXX.XXX:28878 ## Replace with your node external IP
 
-**4.2.**  Create file **lmnode.conf** (in 2 folders **~/.hppcoin** and **~/.hppcoin/testnet3**) contains the following info:
+**4.2.**  Create file **lmnode.conf** (in folder **~/.hppcoin**) contains the following info:
  - LABEL: A one word name you make up to call your node (ex. LMN1)
- - IP:PORT: Your lmnode VPS's IP, and the port is always 18168.
+ - IP:PORT: Your lmnode VPS's IP, and the port is always 28878.
  - LMNODEPRIVKEY: This is the result of your "lmnode genkey" from earlier.
  - TRANSACTION HASH: The collateral tx. hash from the 1000 HPP deposit.
  - INDEX: The Index is always 0 or 1.
@@ -82,11 +82,11 @@ To get TRANSACTION HASH, run:
 
 The output will look like:
 
-    { "d6fd38868bb8f9958e34d5155437d009b72dfd33fc28874c87fd42e51c0f74fdb" : "0", }
+    { "7a6527d45a50c24121776281470cffeba0e88099f12e77c5987a4b8e990b3af0" : "0", }
 
 Sample of lmnode.conf:
 
-    LMN1 51.52.53.54:18168 XrxSr3fXpX3dZcU7CoiFuFWqeHYw83r28btCFfIHqf6zkMp1PZ4 d6fd38868bb8f9958e34d5155437d009b72dfd33fc28874c87fd42e51c0f74fdb 0
+    LMN1 51.52.53.54:28878 7E9t9kq7QT7QMVGUx9drgBpWbSXNdEBZ3cfkiLybxg8cKqr 7a6527d45a50c24121776281470cffeba0e88099f12e77c5987a4b8e990b3af0 0
 
 Step 5. Run a lmnode
 ----------------------

@@ -3,9 +3,9 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-SRCDIR="/Users/nejeoui/hppcoin"
-BUILDDIR="/Users/nejeoui/hppcoin"
-EXEEXT=""
+SRCDIR="/home/nasim/hppcoin"
+BUILDDIR="/home/nasim/hppcoin"
+EXEEXT=".exe"
 
 # These will turn into comments if they were disabled when configuring.
 ENABLE_WALLET=1
